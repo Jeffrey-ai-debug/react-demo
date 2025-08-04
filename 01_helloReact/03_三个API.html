@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- 引入react核心库 -->
+    <script src="./script/react.development.js"></script>
+    <!-- 引入react操作DOM的库 -->
+    <script src="./script/react-dom.development.js"></script>
+    <script>
+      // 创建一个React元素
+      const button = React.createElement(
+        'button',
+        {
+          id: 'btn',
+          type: 'button',
+          className: 'hello',
+          onClick: () => {
+            alert('哈哈哈')
+          },
+        },
+        '点我一下'
+      )
+
+      // 创建一个div
+      const div = React.createElement('div', {}, '我是一个div2', button)
+
+      // 老版本的React中使用的方法
+      // ReactDOM.render(div, documen.getElementById('root'))
+
+      // 获取根元素
+      const root = ReactDOM.createRoot(document.getElementById('root'))
+
+      // 将元素在根元素中显示
+      /* 
+        root.render()
+          -用来将React元素渲染到根元素
+          -根元素的所有元素都会被替换为React元素
+          -当重复调用render()时，React会对比两次渲染结果，
+          确保只修改那些发生变化的元素，对DOM做最少的修改
+      */
+      root.render(div)
+    </script>
+  </body>
+</html>

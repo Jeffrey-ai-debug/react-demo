@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JSX</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- 引入react核心库 -->
+    <script src="./script/react.development.js"></script>
+    <!-- 引入react操作DOM的库 -->
+    <script src="./script/react-dom.development.js"></script>
+    <!-- 引入babel 编译JSX-->
+    <script src="./script/babel.min.js"></script>
+    <script type="text/babel">
+      /* 
+        {} 只能用来放js表达式，而不能放语句（if for）
+            在语句中是可以去操作JSX
+      */
+
+      let div,
+        name = '赵六'
+      const lang = 'en'
+      if (lang === 'en') {
+        div = <div>hello {name}</div>
+      } else if (lang === 'cn') {
+        div = <div>你好 {name}</div>
+      }
+
+      const data = ['张三', '李四', '王五']
+
+      /* 
+        将data渲染为一个列表在网页中显示
+        jsx中会自动将数组中的元素在页面中显示
+       */
+      // const list = <ul>{data}</ul>
+
+      // const arr = []
+      // // 遍历data
+      // for(let i = 0; i < data.length; i++){
+      //   arr.push(<li>{data[i]}</li>)
+      // }
+      const list = <ul>{data.map((e,i) => <li key={i}>{e}</li>)}</ul>
+
+      const root = ReactDOM.createRoot(document.getElementById('root'))
+      root.render(list)
+    </script>
+  </body>
+</html>

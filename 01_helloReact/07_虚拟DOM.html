@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <button id="btn">改变元素li</button>
+    <!-- 引入react核心库 -->
+    <script src="./script/react.development.js"></script>
+    <!-- 引入react操作DOM的库 -->
+    <script src="./script/react-dom.development.js"></script>
+    <!-- 引入babel 编译JSX-->
+    <script src="./script/babel.min.js"></script>
+    <script type="text/babel">
+      const data1 = ['张三','李四','王五']
+      const data2 = ['tom','张三','李四','王五']
+
+      const list1 = <ul>
+        {data1.map((e,i) => <li key={e}>{e}</li>)}
+        </ul>
+
+        const list2 = <ul>
+        {data2.map((e,i) => <li key={e}>{e}</li>)}
+        </ul>
+      const root = ReactDOM.createRoot(document.getElementById('root'))
+
+      root.render(list1)
+
+      document.getElementById('btn').onclick = function(){
+        // 重新渲染
+        root.render(list2)
+      }
+
+      /* 
+        旧元素
+          ul
+            li>张三
+            li>李四
+            li>王五
+        
+        新元素
+          ul
+            li>tom
+            li>李四
+            li>王五
+        
+        上例中，只有一个li发生变化，所以只有第一个li被修改，其他元素不变
+
+        当我们在jsx中显示数组，数组中的每个元素都需要设置唯一一个key，否则控制台会显示警告
+          重新渲染页面时，React会按照顺序依次比较对应的元素，当渲染一个列表时，同样也会按顺序比较对应元素
+          如果列表的顺序永远不会发生变化，这么做当然没问题，但是如果顺序改变，这么做会导致性能问题
+        
+        
+        旧元素
+          ul
+            li>张三
+            li>李四
+            li>王五
+        
+        新元素
+          ul
+            li>tom
+            li>张三
+            li>李四
+            li>王五
+        上例中，在列表的最前插入一个新元素，其他元素不变
+            但由于新元素插入到开始位置，其余元素的位置全都发生了变化，而React默认是根据位置比较元素位置
+            所以此时，所有元素都会被修改
+        ————————为了解决此问题，React为列表设计了一个key属性
+                  key的作用相当于ID，只是无法在页面查看，，设置key后，再比较元素时，
+                  就会比较相同key的元素，而不是按照顺序进行比较        
+        
+        注意：
+          1.实际开发中一般采用数据id作为key
+          2.尽量不要用index作为key
+            索引会跟着元素的顺序改变而改变，所以使用索引跟没写key一样
+              唯一不同点，控制台警告没了
+            当元素顺序不发生改变时，用索引作key也没问题
+      */
+
+      /* 
+        在React我们操作的元素被称为React元素，并不是真正的的原生DOM元素，
+          React通过虚拟DOM 将React元素 和 原生DOM，进行映射，虽然操作的React元素，但最终都会在真实DOM中体现
+          虚拟DOM的好处：
+            1.降低API复杂度
+            2。解决兼容问题
+            3.提升性能（减少DOM的不必要操作）
+
+        每当我们调用root.render()时，页面就会发生重新渲染
+          React会通过diff算法，将新的元素和旧的元素进行比较
+          通过比较找到发生变化的元素，并且只对变化的元素进行修改，没变化的不予处理
+      */
+    </script>
+  </body>
+</html>
