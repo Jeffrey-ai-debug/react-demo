@@ -1,0 +1,40 @@
+.item {
+  display: flex;
+  margin: 16px 0;
+  padding: 6px;
+  background-color: #fcbf49;
+  /* border-radius: 10px;//提取到UI/Card组件中
+  box-shadow: 0 0 10px rgba(0, 0, 0, .2); */
+}
+
+.content {
+  flex: auto;
+  text-align: center;
+}
+
+.desc {
+  font-size: 16px;
+  color: #194b49;
+}
+
+.time {
+  color: #d62828;
+}
+
+.delete {
+  color: white;
+  font-size: 20px;
+  width: 20px;
+  margin-right: 3px;
+  text-align: center;
+  line-height: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.5s;
+  user-select: none;
+}
+
+.delete:hover {
+  color: #d62828;
+  transform: rotate(1turn);
+}
