@@ -1,0 +1,14 @@
+.app{
+  width: 300px;
+  min-height: 300px;
+  margin: 50px auto;
+  background-color: #bfa;
+  text-align: center;
+}
+
+.app button {
+  min-width: 100px;
+  font-size: 50px;
+  margin: 0 20px;
+  cursor: pointer;
+}
