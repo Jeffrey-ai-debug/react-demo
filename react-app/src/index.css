@@ -1,0 +1,17 @@
+* {
+  box-sizing: border-box;
+  font-size: 30.7692rem;
+  /* 
+   *23*(100/750)≈3vw
+   *在390宽度下≈ 12px
+  */
+  margin: 0;
+}
+
+body {
+  margin: 0;
+}
+
+img {
+  vertical-align: middle;
+}
