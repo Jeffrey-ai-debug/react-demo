@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import Meals from './components/Meals/Meals'
-import CarContext from './store/cart-context'
+import A from './components/A/A'
+import B from './components/B/B'
+import TestContext from '././store/testContext'
 
 export default function App() {
   // 模拟数据
@@ -61,20 +63,20 @@ export default function App() {
     2.商品总数 (totalAmount)
     3.商品总价 (totalPrice)
 */
-  const [cartData, setCartData] = useState({
+  const [carData, setCarData] = useState({
     items: [],
     totalAmount: 0,
     totalPrice: 0,
   })
 
   // 向购物车加商品
-  const addItem = (meal) => {
+  const addMealHandler = (meal) => {
     // 对购物车浅复制
-    const newCart = { ...cartData }
+    const newCart = { ...carData }
     // 判断购物车中是否存在商品
-    if (newCart.items.indexOf(meal) === -1) {
-      meal.amount = 1
+    if (newCart.items.indexOf(meal) == -1) {
       newCart.items.push(meal)
+      meal.amount = 1
     } else {
       // 增加商品数量
       meal.amount += 1
@@ -84,13 +86,13 @@ export default function App() {
     // 增加总金额
     newCart.totalPrice += meal.price
     // 设置数据
-    setCartData(newCart)
+    setCarData(newCart)
   }
 
   // 减少商品数量
-  const reduceItem = (meal) => {
+  const reduceHandler = (meal) => {
     // 对购物车浅复制
-    const newCart = { ...cartData }
+    const newCart = { ...carData }
     // 减少商品的数量
     meal.amount -= 1
     // 检查商品数量是否归零
@@ -105,14 +107,18 @@ export default function App() {
     // 减少总金额
     newCart.totalPrice -= meal.price
     // 设置数据
-    setCartData(newCart)
+    setCarData(newCart)
   }
   // 创建state存储食物列表
   const [mealsData, setMealsData] = useState(MEALS_DATA)
 
   return (
-    <CarContext.Provider value={{...cartData,addItem,reduceItem}}>
-      <Meals meals={mealsData} />
-    </CarContext.Provider>
+    <>
+      <A />
+      <TestContext.Provider value={{ name: 'walter', age: 66 }}>
+        <B />
+        <Meals meals={mealsData} />
+      </TestContext.Provider>
+    </>
   )
 }
