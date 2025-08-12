@@ -1,0 +1,44 @@
+.CheckoutItem{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.MealImg{
+  width: 140rem;
+}
+
+.MealImg img{
+  width: 100%;
+}
+
+.Desc{
+  flex: auto;
+  margin-left: 20rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.Title{
+  font-size: 24rem;
+  margin: 0;
+}
+
+.PriceOuter{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Price{
+  font-size: 26rem;
+  font-weight: bold;
+}
+
+
+.Price::before{
+   content: '￥';
+   font-weight: normal;
+   font-size: 24rem;
+}

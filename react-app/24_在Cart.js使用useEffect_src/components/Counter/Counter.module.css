@@ -1,0 +1,32 @@
+.Counter {
+  display: flex;
+  align-items: center;
+}
+
+.Sub,
+.Add{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background-color: #fcbf49;
+  width: 36rem;
+  height: 36rem;
+  line-height: 36rem;
+  border-radius: 50%;
+  font-size: 23.0769rem;
+  padding: 0;
+}
+.Sub > svg,
+.Add > svg{
+  font-size: 26.9231rem;
+}
+.Sub {
+  background-color: white;
+  border: 1.9231rem solid black;
+}
+
+.Count {
+  font-size: 30.7692rem;
+  margin: 0 9.6154rem;
+}
