@@ -1,0 +1,9 @@
+.Meals {
+  position: absolute;
+  /* bottom: 0; */
+  /* background-color: #bfa; */
+  overflow: auto;
+  top: 120rem;
+  padding-bottom: 120rem;
+  height: calc(100% - 120rem); /* 设置高度 防止出现额外的滚动条 */
+}

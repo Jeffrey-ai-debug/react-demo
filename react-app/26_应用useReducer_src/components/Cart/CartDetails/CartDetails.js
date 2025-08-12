@@ -20,7 +20,8 @@ export default function CartDetails(props) {
     setShowConfirm(false)
   }
   const okHandler = () => {
-    ctx.clearCart()
+    /* ctx.clearCart() */
+    ctx.cartDataDispatch({type:'CLEAR', meal:{}})
   }
 
   return (

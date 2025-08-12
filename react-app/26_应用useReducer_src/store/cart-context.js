@@ -4,9 +4,10 @@ const CarContext = React.createContext({
   items: [],
   totalAmount: 0,
   totalPrice: 0,
-  addItem: ()=> {},
+  /* addItem: ()=> {},
   reduceItem: ()=> {},
-  clearCart: ()=>{}
+  clearCart: ()=>{} */
+  cartDataDispatch: () => {},
 })
 
 export default CarContext

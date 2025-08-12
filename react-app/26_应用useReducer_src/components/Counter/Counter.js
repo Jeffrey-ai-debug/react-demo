@@ -29,10 +29,14 @@ export default function Counter(props) {
 
   const addButtonHandler = () => {
     // console.log(`output->props.meal`, props.meal)
-    ctx.addItem(props.meal)
+    /* ctx.addItem(props.meal) */
+    ctx.cartDataDispatch({type: 'ADD', meal: props.meal})
+    console.log(`addButtonHandler触发了`)
   }
   const reduceButtonHandler = () => {
-    ctx.reduceItem(props.meal)
+    /* ctx.reduceItem(props.meal) */
+    ctx.cartDataDispatch({type: 'SUB', meal: props.meal})
+    console.log(`reduceButtonHandler触发了`)
   }
 
   return (
