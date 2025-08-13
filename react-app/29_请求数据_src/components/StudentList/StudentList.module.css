@@ -1,0 +1,9 @@
+table {
+  table-layout: auto;
+  border-collapse: collapse;
+  margin: auto;
+}
+
+th {
+  border: 1px solid #000;
+}
