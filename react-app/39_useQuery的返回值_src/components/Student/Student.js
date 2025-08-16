@@ -3,19 +3,25 @@ import './Student.module.css'
 // import StuContext from '../../store/StuContext'
 import StudentForm from '../StudentForm/StudentForm'
 import useFetch from '../../hooks/useFetch'
-import { useDelStudentMutation } from '../../store/studentApi'
 
 export default function Student({
   stu: { name, gender, age, address, documentId },
 }) {
+  // { stu: { name, gender, age, address } } = props //解构赋值
+
+  // const ctx = useContext(StuContext)
+
   const [isEdit, setIsEdit] = useState(false)
 
-  // 获取删除的钩子,useMutation返回的是一个数组
-  // 数组中有两个东西，第一个是操作的触发器，第二个是结果
-  const [delStudent, { isSuccess }] = useDelStudentMutation()
+  // studentForm一加载，应该去自动的加载最新的学生数据
+
+  // const { loading, err, fetchData:delStu } = useFetch({
+  //   url: `students/${documentId}`,
+  //   method: 'delete'
+  // },ctx.fetchData)
 
   const deleteHandler = (id) => {
-    delStudent(documentId)
+    // delStu()
   }
   const editHandler = () => {
     setIsEdit((prevState) => !prevState)
@@ -26,7 +32,7 @@ export default function Student({
 
   return (
     <>
-      {!isEdit && !isSuccess && (
+      {!isEdit ? (
         <tr>
           <td>{name}</td>
           <td>{gender}</td>
@@ -38,15 +44,20 @@ export default function Student({
             <button onClick={() => deleteHandler(documentId)}>删除</button>
           </td>
         </tr>
+      ) : (
+        <StudentForm stuId={documentId} onCancel={cancelEdit} />
       )}
 
-      {isSuccess && (
+      {/*  {loading && (
         <tr>
-          <td colSpan={5}>删除成功！</td>
+          <td colSpan={5}>正在删除数据。。。</td>
         </tr>
       )}
-
-      {isEdit && <StudentForm stuId={documentId} onCancel={cancelEdit} />}
+      {err && (
+        <tr>
+          <td colSpan={5}>删除失败！</td>
+        </tr>
+      )} */}
     </>
   )
 }

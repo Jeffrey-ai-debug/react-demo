@@ -2,11 +2,7 @@ import React, { useCallback, useContext, useEffect, useState } from 'react'
 import './StudentForm.css'
 // import StuContext from '../../store/StuContext'
 // import useFetch from '../../hooks/useFetch'
-import {
-  useAddStudentMutation,
-  useGetStudentByIdQuery,
-  useUpdateStudentMutation,
-} from '../../store/studentApi'
+import { useGetStudentByIdQuery } from '../../store/studentApi'
 
 export default function StudentForm(props) {
   // const ctx = useContext(StuContext)
@@ -21,18 +17,13 @@ export default function StudentForm(props) {
         }
   )
 
-  const [addStudent, { isAddSuccess }] = useAddStudentMutation()
-
-  const [updateStudent, { isUpdateSuccess }] = useUpdateStudentMutation()
-
-  const { data: stuData, isSuccess } = useGetStudentByIdQuery(props.stuId, {
-    skip: !props.stuId, //设置无id跳过请求
-  })
+  const { data: stuData, isSuccess } = useGetStudentByIdQuery(props.stuId)
 
   useEffect(() => {
-    if (isSuccess) {
+    if(isSuccess){
       setInputData(stuData)
-    } else {
+    }else{
+
     }
   }, [isSuccess])
 
@@ -49,24 +40,11 @@ export default function StudentForm(props) {
     setInputData((prevState) => ({ ...prevState, address: e.target.value }))
   }
   const submitHandler = () => {
-    addStudent(inputData)
-    setInputData({//重置数据
-      name: '',
-      age: '',
-      address: '',
-      gender: '男',
-    })
+    console.log(`output->inputData`, inputData)
+    // updateStudent(inputData)
   }
-
   const editHandler = () => {
-    const params = {
-      address: inputData.address,
-      age: inputData.age,
-      gender: inputData.gender,
-      name: inputData.name,
-    }
-    updateStudent({ stu: params, id: inputData.documentId })
-    props.onCancel()
+    delete inputData.documentId
     // updateStudent(inputData)
   }
 
