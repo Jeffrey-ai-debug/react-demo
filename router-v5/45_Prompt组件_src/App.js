@@ -1,7 +1,6 @@
 import {
   BrowserRouter,
   HashRouter,
-  Redirect,
   Route,
   Router,
   Switch,
@@ -12,16 +11,12 @@ import Menu from './components/Menu'
 import Student from './components/Student'
 import Hello from './components/Hello'
 import MyForm from './components/MyForm'
-import { useState } from 'react'
-import Login from './components/Login'
 
 function App() {
-  const [isLogin, setIsLogin] = useState(false)
-
   return (
     <div className="App">
       <h1>App组件</h1>
-      <Menu />
+      <Menu/>
       {/* 
         可以将Route统一放到一个Switch中，
           一个Switch中只会有一个路由显示
@@ -33,20 +28,9 @@ function App() {
           <About />
         </Route>
 
-        {/* <Route path="/form">
-          <MyForm />
-        </Route> */}
-
-        <Route path={'/login'}>
-          <Login />
-        </Route>
-
         <Route path="/form">
-          {isLogin ? <MyForm /> : <Redirect to={'/login'} />}
+          <MyForm />
         </Route>
-
-        {/* 从/abc重定向到/form */}
-        {/* <Redirect from={'/abc'} to={'/form'} /> */}
 
         <Route path="*">
           <div>路径错误</div>
